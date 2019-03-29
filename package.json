@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/GutleberB94/LIRI/issues"
   },
-  "homepage": "https://github.com/GutleberB94/LIRI#readme"
+  "homepage": "https://github.com/GutleberB94/LIRI#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
 }
