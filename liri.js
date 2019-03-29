@@ -1,13 +1,14 @@
-require("dotenv").config();
+//require(".env").config();
 
 var keys = require("./keys.js");
 var moment = require("moment");
 var axios = require("axios");
+var spotify = require("spotify");
 
-var userCommand = proccess.argv[2];
+var userCommand = process.argv[2];
 var userSearch = process.argv.slice(3).join(" ");
 
-var spotify = new Spotify(keys.spotify);
+//var spotify = new Spotify(keys.spotify);
 
 
 switch(userCommand) {
@@ -37,7 +38,7 @@ switch(userCommand) {
     break;
 
     default:
-    console.log("Not a valid command valid commands are: ")
+    console.log(userCommand + " is not a valid command, valid commands are: ")
     console.log("concert-this")
     console.log("spotify-this-song")
     console.log("movie-this")
