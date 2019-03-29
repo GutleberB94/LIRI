@@ -1,14 +1,14 @@
-//require(".env").config();
+require("dotenv").config();
 
 var keys = require("./keys.js");
 var moment = require("moment");
 var axios = require("axios");
-var spotify = require("spotify");
+var Spotify = require("spotify");
 
 var userCommand = process.argv[2];
 var userSearch = process.argv.slice(3).join(" ");
 
-//var spotify = new Spotify(keys.spotify);
+
 
 
 switch (userCommand) {
