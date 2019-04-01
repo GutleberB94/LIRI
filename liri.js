@@ -3,7 +3,7 @@ require("dotenv").config();
 var keys = require("./keys.js");
 var moment = require("moment");
 var axios = require("axios");
-var Spotify = require("spotify");
+var Spotify = require("node-spotify-api");
 
 var userCommand = process.argv[2];
 var userSearch = process.argv.slice(3).join(" ");
@@ -21,7 +21,7 @@ switch (userCommand) {
 
     case "spotify-this-song":
 
-        // code here
+        getSpotifyInfo(userSearch);
 
         break;
 
@@ -57,7 +57,8 @@ function getConcert(userSearch) {
             var venueState = response.data[0].venue.region;
             var eventDate = moment(response.data[0].datetime).format("MM-DD-YYYY");
 
-            console.log("\n\nVenue Name: " + venueName);
+            console.log("\n" + userSearch + "'s next concert will be at: ");
+            console.log("\nVenue Name: " + venueName);
             console.log("Venue Location: " + venueCity + ', ' + venueState);
             console.log("Event Date: " + eventDate);
 
@@ -76,4 +77,44 @@ function getConcert(userSearch) {
             }
             console.log(error.config);
         });
+} // function close
+
+
+function getSpotifyInfo(userSearch) {
+
+var spotify = new Spotify(keys.spotify);
+
+//show artist
+//song name
+// a preview link to song
+// the album of that song
+
+    if(!userSearch) {
+
+        userSearch = "The Sign"
+
+    }
+
+    spotify.search({type: 'track', query: userSearch}, function(error, response) {
+
+        if (error) {
+
+            console.log("error" + error);
+            return error;
+        }
+
+        var artist = response.tracks.items[0].album.artists[0].name;
+        var songName = response.tracks.items[0].name;
+        var previewLink = response.tracks.items[0].href;
+        var album = response.tracks.items[0].album.name;
+
+        console.log("\n Here is some info about " + userSearch + " from spotify");
+        console.log("\nArtist: " + artist);
+        console.log("Song Name: " + songName);
+        console.log("Preview: " + previewLink);
+        console.log("Album: " + album);
+
+
+    }) // spotify close
+
 } // function close
