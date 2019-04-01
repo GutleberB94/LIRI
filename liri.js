@@ -58,6 +58,7 @@ function getConcert(userSearch) {
             var eventDate = moment(response.data[0].datetime).format("MM-DD-YYYY");
 
             console.log("\n" + userSearch + "'s next concert will be at: ");
+            console.log("-------------------------------------------------------");
             console.log("\nVenue Name: " + venueName);
             console.log("Venue Location: " + venueCity + ', ' + venueState);
             console.log("Event Date: " + eventDate);
@@ -84,11 +85,6 @@ function getSpotifyInfo(userSearch) {
 
 var spotify = new Spotify(keys.spotify);
 
-//show artist
-//song name
-// a preview link to song
-// the album of that song
-
     if(!userSearch) {
 
         userSearch = "The Sign"
@@ -108,7 +104,8 @@ var spotify = new Spotify(keys.spotify);
         var previewLink = response.tracks.items[0].href;
         var album = response.tracks.items[0].album.name;
 
-        console.log("\n Here is some info about " + userSearch + " from spotify");
+        console.log("\nHere is some info about the song " + userSearch + " from spotify");
+        console.log("-------------------------------------------------------");
         console.log("\nArtist: " + artist);
         console.log("Song Name: " + songName);
         console.log("Preview: " + previewLink);
@@ -116,5 +113,13 @@ var spotify = new Spotify(keys.spotify);
 
 
     }) // spotify close
+
+} // function close
+
+
+function movieSearch(userSearch) {
+
+
+
 
 } // function close
