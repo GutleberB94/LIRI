@@ -45,10 +45,6 @@ switch (userCommand) {
         console.log("do-what-it-says")
 }
 
-console.log(userCommand)
-console.log(userSearch)
-
-
 function getConcert(userSearch) {
 
     var artist = userSearch;
@@ -56,7 +52,14 @@ function getConcert(userSearch) {
     axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=trilogy")
         .then(function (response) {
 
-            console.log(response);
+            var venueName = response.data[0].venue.name;
+            var venueCity = response.data[0].venue.city;
+            var venueState = response.data[0].venue.region;
+            var eventDate = moment(response.data[0].datetime).format("MM-DD-YYYY");
+
+            console.log("\n\nVenue Name: " + venueName);
+            console.log("Venue Location: " + venueCity + ', ' + venueState);
+            console.log("Event Date: " + eventDate);
 
 
 
