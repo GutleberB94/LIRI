@@ -130,8 +130,8 @@ function movieSearch(userSearch) {
 
         var title = response.data.Title;
         var releaseYear = response.data.Year;
-        var imdbRating = response.data.imdbRating.Value;
-        var tomatosRating = response.data.Ratings[1];
+        var imdbRating = response.data.imdbRating;
+        var tomatosRating = response.data.Ratings[1].Value;
         var countryProduced = response.data.Country;
         var language = response.data.Language;
         var plot = response.data.Plot;
