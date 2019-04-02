@@ -27,7 +27,7 @@ switch (userCommand) {
 
     case "movie-this":
 
-        // code here
+        movieSearch(userSearch);
 
         break;
 
@@ -119,7 +119,53 @@ var spotify = new Spotify(keys.spotify);
 
 function movieSearch(userSearch) {
 
+    if(!userSearch) {
+        
+        userSearch = "Mr. Nobody";
+
+    }
+
+    axios.get("https://www.omdbapi.com/?t=" + userSearch + "&y=&plot=short&apikey=trilogy")
+    .then(function (response) {
+
+        var title = response.data.Title;
+        var releaseYear = response.data.Year;
+        var imdbRating = response.data.imdbRating.Value;
+        var tomatosRating = response.data.Ratings[1];
+        var countryProduced = response.data.Country;
+        var language = response.data.Language;
+        var plot = response.data.Plot;
+        var actors = response.data.Actors;
+
+
+        console.log("\nHere is some info about the movie " + userSearch + " from OMDB");
+        console.log("-------------------------------------------------------");
+        console.log("\nTitle: " + title);
+        console.log("Year Released: " + releaseYear);
+        console.log("IMDB Rating: " + imdbRating);
+        console.log("Rotten Tomatoes Rating: " + tomatosRating);
+        console.log("Produced In: " + countryProduced);
+        console.log("Language: " + language);
+        console.log("Plot: " + plot);
+        console.log("Actors: " + actors);
+
+    })
+
+    .catch(function (error) {
+        if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+        } else if (error.request) {
+            console.log(error.request);
+        } else {
+            console.log("Error", error.message);
+        }
+        console.log(error.config);
+    });
+
 
 
 
 } // function close
+
